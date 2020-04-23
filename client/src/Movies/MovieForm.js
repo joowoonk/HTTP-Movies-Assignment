@@ -10,16 +10,17 @@ const initialMovie = {
   stars: [],
 };
 
-const MovieForm = () => {
+const MovieForm = (props) => {
   const [movie, setMovie] = useState(initialMovie);
   const { push } = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`https://localhost:5000/api/movies/${id}`)
+      .get(`http://localhost:5000/api/movies/${id}`)
       .then((res) => {
-        console.log({ res });
+        // console.log({ res });
+        setMovie(res.data);
       })
       .catch((err) => {
         console.log({ err });
@@ -39,7 +40,18 @@ const MovieForm = () => {
   };
 
   const updateForm = (e) => {
-    console.log("submitbutoon working");
+    console.log("submitbutoon working", props.movies);
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5000/api/movies/${id}`, movie)
+      .then((res) => {
+        console.log(res);
+        setMovie(res.data);
+        push("/");
+      })
+      .catch((err) => {
+        console.log("Put Error", err);
+      });
   };
 
   return (

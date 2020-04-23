@@ -70,6 +70,18 @@ body {
   padding: 5px 10px;
   background-color: red;
 }
+.update-button {
+  position: absolute;
+  top: 60px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: skyblue;
+}
+.update-button:hover {
+  background-color: rgb(8, 102, 203);
+  color: white;
+}
 
 .delete-button:hover {
   background-color: rgb(91, 2, 2);
